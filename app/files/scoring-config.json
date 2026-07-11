@@ -1,0 +1,361 @@
+{
+  "version": "1.0.0",
+  "source": "Derived from Isle of Man Government Climate Impact Assessment (CIA) Tool, version 15 April 2025",
+  "headline": {
+    "envWeight": 0.6,
+    "socialWeight": 0.4,
+    "scale": 100
+  },
+  "cohort": {
+    "minSizeForPercentile": 10
+  },
+  "impactScale": [
+    { "value": 2, "label": "significant_positive" },
+    { "value": 1, "label": "slight_positive" },
+    { "value": 0, "label": "not_applicable" },
+    { "value": -1, "label": "slight_negative" },
+    { "value": -2, "label": "significant_negative" }
+  ],
+  "permanenceQuestion": {
+    "id": "permanence",
+    "text": "Is this embedded in how your business operates year-round, or a one-off/occasional initiative?",
+    "options": [
+      { "label": "Embedded in ongoing operations", "value": 2 },
+      { "label": "One-off or occasional", "value": 1 }
+    ]
+  },
+  "reachQuestion": {
+    "id": "reach",
+    "text": "Does this effect extend beyond your own premises into the wider biosphere or community (supply chain, customers, habitats, neighbours)?",
+    "options": [
+      { "label": "Yes — extends beyond our premises", "value": 2 },
+      { "label": "No — limited to our premises", "value": 1 }
+    ]
+  },
+  "bands": [
+    { "id": "significant_positive", "min": 4, "max": 8, "colour": "green", "action": "Strong performance. Keep it up and consider sharing your approach with other biosphere businesses." },
+    { "id": "slight_positive", "min": 1, "max": 3, "colour": "light_green", "action": "Positive contribution. Review whether it could be deepened or made permanent." },
+    { "id": "neutral", "min": 0, "max": 0, "colour": "grey", "action": "No impact identified. No action required." },
+    { "id": "slight_negative", "min": -3, "max": -1, "colour": "amber", "action": "Slight or short-term negative impact. Review this area to identify practical improvements." },
+    { "id": "significant_negative", "min": -8, "max": -4, "colour": "red", "action": "Significant and/or long-term negative impact. Changes are needed in this area; prioritise it in your improvement plan." }
+  ],
+  "criteria": [
+    {
+      "id": "ghg",
+      "pillar": "environmental",
+      "name": "Greenhouse Gases",
+      "question": "How does your business affect greenhouse gas emissions and removals? Consider fuel and heating, vehicles, refrigeration, fertilisers/livestock, and anything that captures carbon (habitat creation, verified offsets).",
+      "options": [
+        { "value": 2, "label": "We actively and measurably reduce emissions or increase carbon removals (e.g. renewable energy, electrified fleet, sequestration)" },
+        { "value": 1, "label": "We take some steps that reduce our emissions" },
+        { "value": 0, "label": "Not applicable / no material impact" },
+        { "value": -1, "label": "Our operations slightly increase emissions" },
+        { "value": -2, "label": "Our operations significantly increase emissions with no mitigation" }
+      ]
+    },
+    {
+      "id": "air_quality",
+      "pillar": "environmental",
+      "name": "Air Quality",
+      "question": "How does your business affect air pollution, outdoors and indoors? Consider exhaust fumes, burning fuels, industrial processes, cooking emissions, and indoor air quality of your premises.",
+      "options": [
+        { "value": 2, "label": "We significantly decrease air pollutants" },
+        { "value": 1, "label": "We slightly decrease air pollutants" },
+        { "value": 0, "label": "Not applicable / no material impact" },
+        { "value": -1, "label": "We slightly increase air pollutants" },
+        { "value": -2, "label": "We significantly increase air pollutants" }
+      ]
+    },
+    {
+      "id": "sustainable_transport",
+      "pillar": "environmental",
+      "name": "Sustainable Transport",
+      "question": "How does your business support the shift to sustainable transport for staff, customers, and deliveries? Consider active travel, public transport, EVs, charging points, bike racks, and delivery consolidation.",
+      "options": [
+        { "value": 2, "label": "We significantly encourage sustainable transport" },
+        { "value": 1, "label": "We slightly encourage sustainable transport" },
+        { "value": 0, "label": "Not applicable / no material impact" },
+        { "value": -1, "label": "We slightly discourage sustainable transport" },
+        { "value": -2, "label": "We significantly discourage sustainable transport" }
+      ]
+    },
+    {
+      "id": "land_use",
+      "pillar": "environmental",
+      "name": "Land Use Change",
+      "question": "How does your business change the landscape and how land is used or maintained? Consider development footprint, surface permeability (concrete vs permeable surfaces), and green infrastructure such as trees or retention ponds.",
+      "options": [
+        { "value": 2, "label": "Our land use significantly increases positive impacts" },
+        { "value": 1, "label": "Our land use slightly increases positive impacts" },
+        { "value": 0, "label": "Not applicable / no material impact" },
+        { "value": -1, "label": "Our land use slightly increases negative impacts" },
+        { "value": -2, "label": "Our land use significantly increases negative impacts" }
+      ]
+    },
+    {
+      "id": "biodiversity",
+      "pillar": "environmental",
+      "name": "Biodiversity",
+      "question": "How does your business affect plants, animals and habitats? Consider habitats on or near your site, key species, protected areas, land management, and pollution reaching soil or water.",
+      "options": [
+        { "value": 2, "label": "We significantly improve biodiversity by restoring or creating habitats" },
+        { "value": 1, "label": "We slightly improve biodiversity by improving habitats or supporting species" },
+        { "value": 0, "label": "Not applicable / no material impact" },
+        { "value": -1, "label": "We slightly reduce biodiversity through impacts on habitat quality or species" },
+        { "value": -2, "label": "We significantly reduce biodiversity by reducing or replacing habitats" }
+      ]
+    },
+    {
+      "id": "soil_water_marine",
+      "pillar": "environmental",
+      "name": "Soil, Watercourse & Marine Health",
+      "question": "How does your business affect the health of soil, watercourses and the sea? Consider run-off, discharges, chemicals and fuels, plastic waste, and any activity on or near water.",
+      "options": [
+        { "value": 2, "label": "We significantly decrease pollutants reaching soil or water" },
+        { "value": 1, "label": "We slightly decrease pollutants reaching soil or water" },
+        { "value": 0, "label": "Not applicable / no material impact" },
+        { "value": -1, "label": "We slightly increase pollutants reaching soil or water" },
+        { "value": -2, "label": "We significantly increase pollutants reaching soil or water" }
+      ]
+    },
+    {
+      "id": "adaptation",
+      "pillar": "environmental",
+      "name": "Climate Change Adaptation",
+      "question": "How does your business affect resilience to climate impacts such as flooding, heat, drought and storms — for itself and its surroundings? Consider flood defences, shading, green roofs, water conservation and continuity planning.",
+      "options": [
+        { "value": 2, "label": "We significantly increase resilience/adaptation" },
+        { "value": 1, "label": "We slightly increase resilience/adaptation" },
+        { "value": 0, "label": "Not applicable / no material impact" },
+        { "value": -1, "label": "We slightly decrease resilience/adaptation" },
+        { "value": -2, "label": "We significantly decrease resilience/adaptation" }
+      ]
+    },
+    {
+      "id": "energy_use",
+      "pillar": "environmental",
+      "name": "Energy Use",
+      "question": "How does your business affect total energy demand? Consider building efficiency, insulation, appliances and lighting, heat pumps, operating hours, staff behaviour and digital/IT loads.",
+      "options": [
+        { "value": 2, "label": "We significantly decrease our energy use" },
+        { "value": 1, "label": "We slightly decrease our energy use" },
+        { "value": 0, "label": "Not applicable / no material impact" },
+        { "value": -1, "label": "We slightly increase our energy use" },
+        { "value": -2, "label": "We significantly increase our energy use" }
+      ]
+    },
+    {
+      "id": "sustainable_materials",
+      "pillar": "environmental",
+      "name": "Sustainable Materials",
+      "question": "How sustainably does your business source materials and supplies? Consider certification, recycled/repurposed content, reusability, supply-chain transparency, ethical production, and embodied carbon.",
+      "options": [
+        { "value": 2, "label": "Sustainable resources used throughout" },
+        { "value": 1, "label": "Sustainable resources used in most places" },
+        { "value": 0, "label": "Not applicable" },
+        { "value": -1, "label": "Sustainable resources not used much" },
+        { "value": -2, "label": "Sustainable resources not used or considered at all" }
+      ]
+    },
+    {
+      "id": "waste",
+      "pillar": "environmental",
+      "name": "Waste",
+      "question": "How does your business affect the quantity and type of waste produced? Apply the waste hierarchy — prevent, reduce, reuse, recycle, recover, dispose — and include food waste, packaging, and waste water.",
+      "options": [
+        { "value": 2, "label": "We significantly reduce overall quantities of waste" },
+        { "value": 1, "label": "We slightly reduce overall quantities of waste" },
+        { "value": 0, "label": "Not applicable / no material impact" },
+        { "value": -1, "label": "We slightly increase overall quantities of waste" },
+        { "value": -2, "label": "We significantly increase overall quantities of waste" }
+      ]
+    },
+    {
+      "id": "food",
+      "pillar": "social",
+      "name": "Food",
+      "question": "How does your business support access to healthy and affordable food in the community? Consider what you sell or serve, local sourcing, affordability, and support for food security initiatives.",
+      "options": [
+        { "value": 2, "label": "We significantly promote healthy and/or affordable food" },
+        { "value": 1, "label": "We slightly promote healthy and/or affordable food" },
+        { "value": 0, "label": "Not applicable / no impact" },
+        { "value": -1, "label": "We slightly impede healthy and/or affordable food" },
+        { "value": -2, "label": "We significantly impede healthy and/or affordable food" }
+      ]
+    },
+    {
+      "id": "health_wellbeing",
+      "pillar": "social",
+      "name": "Health & Wellbeing",
+      "question": "How does your business affect physical and mental health — for staff, customers and the community? Consider working conditions, access to activity and nature, and services or products that support (or harm) health.",
+      "options": [
+        { "value": 2, "label": "We significantly increase positive health outcomes" },
+        { "value": 1, "label": "We slightly increase positive health outcomes" },
+        { "value": 0, "label": "Not applicable / no impact" },
+        { "value": -1, "label": "We slightly decrease positive health outcomes" },
+        { "value": -2, "label": "We significantly decrease positive health outcomes" }
+      ]
+    },
+    {
+      "id": "housing",
+      "pillar": "social",
+      "name": "Housing",
+      "question": "How does your business affect the availability, quality or affordability of housing? Consider staff accommodation, property you own or convert, short-term letting pressure, and support for energy-efficient homes.",
+      "options": [
+        { "value": 2, "label": "We significantly increase access to quality and/or affordable homes" },
+        { "value": 1, "label": "We slightly increase access to quality and/or affordable homes" },
+        { "value": 0, "label": "Not applicable / no impact" },
+        { "value": -1, "label": "We slightly decrease access to quality and/or affordable homes" },
+        { "value": -2, "label": "We significantly decrease access to quality and/or affordable homes" }
+      ]
+    },
+    {
+      "id": "education",
+      "pillar": "social",
+      "name": "Education & Skills",
+      "question": "How does your business affect learning opportunities? Consider staff training, apprenticeships, work experience, community education, and skills that prepare people for a net-zero future.",
+      "options": [
+        { "value": 2, "label": "We significantly increase the availability of learning opportunities" },
+        { "value": 1, "label": "We slightly increase the availability of learning opportunities" },
+        { "value": 0, "label": "Not applicable / no impact" },
+        { "value": -1, "label": "We slightly decrease the availability of learning opportunities" },
+        { "value": -2, "label": "We significantly decrease the availability of learning opportunities" }
+      ]
+    },
+    {
+      "id": "built_community",
+      "pillar": "social",
+      "name": "Built Community",
+      "question": "How does your business affect shared spaces, connectivity and sense of place? Consider green spaces, meeting places, links to paths and transport, and enabling community sustainability through the built environment.",
+      "options": [
+        { "value": 2, "label": "We significantly improve facilities, shared spaces, connectivity or resources" },
+        { "value": 1, "label": "We slightly improve facilities, shared spaces, connectivity or resources" },
+        { "value": 0, "label": "Not applicable / no impact" },
+        { "value": -1, "label": "We slightly reduce facilities, shared spaces, connectivity or resources" },
+        { "value": -2, "label": "We significantly reduce facilities, shared spaces, connectivity or resources" }
+      ]
+    },
+    {
+      "id": "cultural_community",
+      "pillar": "social",
+      "name": "Cultural Community",
+      "question": "How does your business affect the social and cultural life of the community? Consider support for local events, arts, sport, heritage, minority languages, and community climate action.",
+      "options": [
+        { "value": 2, "label": "We significantly increase social or cultural resources or support" },
+        { "value": 1, "label": "We slightly increase social or cultural resources or support" },
+        { "value": 0, "label": "Not applicable / no impact" },
+        { "value": -1, "label": "We slightly reduce social or cultural resources or support" },
+        { "value": -2, "label": "We significantly reduce social or cultural resources or support" }
+      ]
+    },
+    {
+      "id": "accessibility",
+      "pillar": "social",
+      "name": "Accessibility",
+      "question": "How accessible is your business? Consider physical access for disabled people, digital access, social barriers such as language or isolation, and financial barriers.",
+      "options": [
+        { "value": 2, "label": "We actively reduce barriers to increase access" },
+        { "value": 1, "label": "We present no barriers to access" },
+        { "value": 0, "label": "Not applicable / no impact" },
+        { "value": -1, "label": "There is a risk of some barriers to access" },
+        { "value": -2, "label": "We present barriers to access in one or more areas" }
+      ]
+    },
+    {
+      "id": "local_economy",
+      "pillar": "social",
+      "name": "Local Economy & Jobs",
+      "question": "How does your business support local livelihoods? Consider local employment and procurement, quality of employment (living wage, secure contracts), and opportunities such as tourism, apprenticeships or new services.",
+      "options": [
+        { "value": 2, "label": "We provide significant support for the local economy and/or employment" },
+        { "value": 1, "label": "We provide slight support for the local economy and/or employment" },
+        { "value": 0, "label": "Not applicable / no impact" },
+        { "value": -1, "label": "We slightly undermine the local economy and/or employment" },
+        { "value": -2, "label": "We significantly undermine the local economy and/or employment" }
+      ]
+    },
+    {
+      "id": "safety",
+      "pillar": "social",
+      "name": "Safety",
+      "question": "How does your business affect safety and risk of harm? Consider premises safety, lighting and 'eyes on the street', traffic generated, product/service safety, and cyber security of customer data.",
+      "options": [
+        { "value": 2, "label": "We significantly increase safety and/or reduce risk of harm" },
+        { "value": 1, "label": "We slightly increase safety and/or reduce risk of harm" },
+        { "value": 0, "label": "Not applicable / no impact" },
+        { "value": -1, "label": "We slightly decrease safety and/or increase risk of harm" },
+        { "value": -2, "label": "We significantly decrease safety and/or increase risk of harm" }
+      ]
+    },
+    {
+      "id": "equity",
+      "pillar": "social",
+      "name": "Equity",
+      "question": "Does your business treat all groups fairly? Consider whether any group — by age, disability, income, race, gender, caring responsibilities, location, or access to technology — is differentially affected by how you operate, price, or hire.",
+      "options": [
+        { "value": 2, "label": "No groups differentially impacted, and we actively promote safeguards" },
+        { "value": 1, "label": "No groups differentially impacted" },
+        { "value": 0, "label": "Not applicable / no impact" },
+        { "value": -1, "label": "Some groups differentially impacted, but safeguards are in place" },
+        { "value": -2, "label": "Some groups differentially impacted" }
+      ]
+    },
+    {
+      "id": "community_voice",
+      "pillar": "social",
+      "name": "Community Voice",
+      "question": "How are the community and your staff involved in business decisions that affect them? Consider consultation on changes to premises or services, staff involvement, and engagement with local groups.",
+      "options": [
+        { "value": 2, "label": "Significant opportunities for involvement in and influence on our decisions" },
+        { "value": 1, "label": "Some engagement, with opportunities for involvement or consultation" },
+        { "value": 0, "label": "Not applicable / no impact" },
+        { "value": -1, "label": "Advisory engagement only, with no opportunities for involvement" },
+        { "value": -2, "label": "No communication or engagement" }
+      ]
+    }
+  ],
+  "sectors": {
+    "hospitality_food_service": {
+      "name": "Hospitality & Food Service",
+      "weights": {
+        "environmental": { "ghg": 0.14, "air_quality": 0.06, "sustainable_transport": 0.08, "land_use": 0.04, "biodiversity": 0.06, "soil_water_marine": 0.08, "adaptation": 0.06, "energy_use": 0.16, "sustainable_materials": 0.14, "waste": 0.18 },
+        "social": { "food": 0.20, "health_wellbeing": 0.14, "housing": 0.04, "education": 0.08, "built_community": 0.08, "cultural_community": 0.10, "accessibility": 0.10, "local_economy": 0.14, "safety": 0.06, "equity": 0.04, "community_voice": 0.02 }
+      }
+    },
+    "agriculture_land": {
+      "name": "Agriculture & Land Management",
+      "weights": {
+        "environmental": { "ghg": 0.14, "air_quality": 0.05, "sustainable_transport": 0.03, "land_use": 0.16, "biodiversity": 0.18, "soil_water_marine": 0.18, "adaptation": 0.10, "energy_use": 0.06, "sustainable_materials": 0.05, "waste": 0.05 },
+        "social": { "food": 0.22, "health_wellbeing": 0.08, "housing": 0.04, "education": 0.08, "built_community": 0.06, "cultural_community": 0.10, "accessibility": 0.04, "local_economy": 0.20, "safety": 0.08, "equity": 0.04, "community_voice": 0.06 }
+      }
+    },
+    "retail_consumer": {
+      "name": "Retail & Consumer Goods",
+      "weights": {
+        "environmental": { "ghg": 0.12, "air_quality": 0.05, "sustainable_transport": 0.10, "land_use": 0.04, "biodiversity": 0.04, "soil_water_marine": 0.05, "adaptation": 0.05, "energy_use": 0.13, "sustainable_materials": 0.22, "waste": 0.20 },
+        "social": { "food": 0.08, "health_wellbeing": 0.08, "housing": 0.03, "education": 0.07, "built_community": 0.12, "cultural_community": 0.10, "accessibility": 0.14, "local_economy": 0.20, "safety": 0.08, "equity": 0.06, "community_voice": 0.04 }
+      }
+    },
+    "marine_tourism_recreation": {
+      "name": "Marine, Tourism & Recreation",
+      "weights": {
+        "environmental": { "ghg": 0.10, "air_quality": 0.05, "sustainable_transport": 0.10, "land_use": 0.08, "biodiversity": 0.18, "soil_water_marine": 0.18, "adaptation": 0.09, "energy_use": 0.08, "sustainable_materials": 0.06, "waste": 0.08 },
+        "social": { "food": 0.05, "health_wellbeing": 0.14, "housing": 0.05, "education": 0.09, "built_community": 0.10, "cultural_community": 0.15, "accessibility": 0.12, "local_economy": 0.16, "safety": 0.08, "equity": 0.03, "community_voice": 0.03 }
+      }
+    },
+    "construction_property": {
+      "name": "Construction & Property",
+      "weights": {
+        "environmental": { "ghg": 0.13, "air_quality": 0.06, "sustainable_transport": 0.04, "land_use": 0.16, "biodiversity": 0.12, "soil_water_marine": 0.09, "adaptation": 0.10, "energy_use": 0.08, "sustainable_materials": 0.14, "waste": 0.08 },
+        "social": { "food": 0.01, "health_wellbeing": 0.08, "housing": 0.22, "education": 0.08, "built_community": 0.16, "cultural_community": 0.04, "accessibility": 0.10, "local_economy": 0.14, "safety": 0.10, "equity": 0.03, "community_voice": 0.04 }
+      }
+    },
+    "professional_digital": {
+      "name": "Professional & Digital Services",
+      "weights": {
+        "environmental": { "ghg": 0.16, "air_quality": 0.04, "sustainable_transport": 0.14, "land_use": 0.02, "biodiversity": 0.03, "soil_water_marine": 0.03, "adaptation": 0.06, "energy_use": 0.26, "sustainable_materials": 0.12, "waste": 0.14 },
+        "social": { "food": 0.01, "health_wellbeing": 0.14, "housing": 0.02, "education": 0.16, "built_community": 0.06, "cultural_community": 0.08, "accessibility": 0.14, "local_economy": 0.20, "safety": 0.10, "equity": 0.06, "community_voice": 0.03 }
+      }
+    }
+  }
+}
