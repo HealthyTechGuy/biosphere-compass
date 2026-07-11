@@ -56,9 +56,8 @@ function HomePage() {
               Meet the communities building our island's UNESCO Biosphere
             </h1>
             <p className="mt-5 max-w-xl text-lg text-white/85">
-              {data.stats.count} Manx businesses measured with the Biosphere Compass — an average
-              Biosphere Score of {data.stats.avg}. Shop, stay and buy from people making real
-              environmental and social progress.
+              A living directory of the people and places building a thriving biosphere — and the
+              community, including you, that makes it possible.
             </p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
               <div className="w-full max-w-md rounded-2xl bg-white/95 p-1.5 shadow-lg">
