@@ -1,0 +1,185 @@
+:root {
+  font-family: system-ui, -apple-system, sans-serif;
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background: #f6f7f9;
+  color: #1a1a1a;
+}
+
+.app {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem 6rem;
+}
+
+h1 {
+  margin: 0 0 0.25rem;
+}
+
+h2 {
+  text-transform: capitalize;
+  margin-top: 2rem;
+}
+
+.muted {
+  color: #6b7280;
+  font-size: 0.9em;
+}
+
+.error {
+  color: #b91c1c;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 260px;
+}
+
+.bulk {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: white;
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #f3f4f6;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.criteria {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 1rem;
+}
+
+.pillar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.criterion {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.criterion .question {
+  margin: 0;
+  color: #4b5563;
+  font-size: 0.9rem;
+}
+
+.criterion label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.85rem;
+}
+
+.criterion .toggle {
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+select,
+textarea,
+input[type="text"] {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #d1d5db;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.submit {
+  position: sticky;
+  bottom: 0;
+  padding: 1rem 0;
+  background: linear-gradient(to top, #f6f7f9 60%, transparent);
+  text-align: right;
+}
+
+.submit button {
+  font-size: 1rem;
+  padding: 0.6rem 1.4rem;
+  background: #1f2937;
+  color: white;
+  border-color: #1f2937;
+}
+
+.result {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+.result .headline {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.wheel {
+  list-style: none;
+  padding: 0;
+  columns: 2;
+}
+
+.wheel li {
+  break-inside: avoid;
+  margin-bottom: 0.35rem;
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.recs {
+  padding-left: 1.25rem;
+}
+
+.recs li {
+  margin-bottom: 0.6rem;
+}
