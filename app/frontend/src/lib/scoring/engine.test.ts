@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import rawConfig from "./scoring-config.json" with { type: "json" };
+import rawConfig from "./config.json" with { type: "json" };
 import {
   bandFor,
   cohortPercentile,
@@ -9,7 +9,7 @@ import {
   type CriterionConfig,
   type Questionnaire,
   type ScoringConfig,
-} from "./scoring-engine.js";
+} from "./engine";
 
 const config = rawConfig as ScoringConfig;
 

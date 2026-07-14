@@ -12,16 +12,4 @@ export default defineConfig({
     // nitro/vite builds from this
     server: { entry: "server" },
   },
-  vite: {
-    server: {
-      proxy: {
-        // Biosphere scoring engine (Express, app/backend) runs on :3001.
-        "/api": {
-          target: "http://localhost:3001",
-          changeOrigin: true,
-          rewrite: (path: string) => path.replace(/^\/api/, ""),
-        },
-      },
-    },
-  },
 });

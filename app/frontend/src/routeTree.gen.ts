@@ -17,6 +17,8 @@ import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BusinessSlugRouteImport } from './routes/business.$slug'
+import { Route as ApiScoreRouteImport } from './routes/api/score'
+import { Route as ApiConfigRouteImport } from './routes/api/config'
 import { Route as AuthenticatedAssessmentRouteImport } from './routes/_authenticated/assessment'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
@@ -59,6 +61,16 @@ const BusinessSlugRoute = BusinessSlugRouteImport.update({
   path: '/business/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiScoreRoute = ApiScoreRouteImport.update({
+  id: '/api/score',
+  path: '/api/score',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiConfigRoute = ApiConfigRouteImport.update({
+  id: '/api/config',
+  path: '/api/config',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedAssessmentRoute = AuthenticatedAssessmentRouteImport.update({
   id: '/assessment',
   path: '/assessment',
@@ -79,6 +91,8 @@ export interface FileRoutesByFullPath {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/assessment': typeof AuthenticatedAssessmentRoute
+  '/api/config': typeof ApiConfigRoute
+  '/api/score': typeof ApiScoreRoute
   '/business/$slug': typeof BusinessSlugRoute
 }
 export interface FileRoutesByTo {
@@ -90,6 +104,8 @@ export interface FileRoutesByTo {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/assessment': typeof AuthenticatedAssessmentRoute
+  '/api/config': typeof ApiConfigRoute
+  '/api/score': typeof ApiScoreRoute
   '/business/$slug': typeof BusinessSlugRoute
 }
 export interface FileRoutesById {
@@ -103,6 +119,8 @@ export interface FileRoutesById {
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/_authenticated/assessment': typeof AuthenticatedAssessmentRoute
+  '/api/config': typeof ApiConfigRoute
+  '/api/score': typeof ApiScoreRoute
   '/business/$slug': typeof BusinessSlugRoute
 }
 export interface FileRouteTypes {
@@ -116,6 +134,8 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin'
     | '/assessment'
+    | '/api/config'
+    | '/api/score'
     | '/business/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -127,6 +147,8 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/admin'
     | '/assessment'
+    | '/api/config'
+    | '/api/score'
     | '/business/$slug'
   id:
     | '__root__'
@@ -139,6 +161,8 @@ export interface FileRouteTypes {
     | '/sitemap.xml'
     | '/_authenticated/admin'
     | '/_authenticated/assessment'
+    | '/api/config'
+    | '/api/score'
     | '/business/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -150,6 +174,8 @@ export interface RootRouteChildren {
   DirectoryRoute: typeof DirectoryRoute
   ScoreRoute: typeof ScoreRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  ApiConfigRoute: typeof ApiConfigRoute
+  ApiScoreRoute: typeof ApiScoreRoute
   BusinessSlugRoute: typeof BusinessSlugRoute
 }
 
@@ -211,6 +237,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BusinessSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/score': {
+      id: '/api/score'
+      path: '/api/score'
+      fullPath: '/api/score'
+      preLoaderRoute: typeof ApiScoreRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/config': {
+      id: '/api/config'
+      path: '/api/config'
+      fullPath: '/api/config'
+      preLoaderRoute: typeof ApiConfigRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/assessment': {
       id: '/_authenticated/assessment'
       path: '/assessment'
@@ -249,6 +289,8 @@ const rootRouteChildren: RootRouteChildren = {
   DirectoryRoute: DirectoryRoute,
   ScoreRoute: ScoreRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  ApiConfigRoute: ApiConfigRoute,
+  ApiScoreRoute: ApiScoreRoute,
   BusinessSlugRoute: BusinessSlugRoute,
 }
 export const routeTree = rootRouteImport
