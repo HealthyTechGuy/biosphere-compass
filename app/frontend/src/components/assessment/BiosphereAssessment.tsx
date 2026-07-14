@@ -1,11 +1,17 @@
 import { useCallback, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { StepIndicator } from "./StepIndicator";
+import { StepBusiness } from "./StepBusiness";
 import { StepSector } from "./StepSector";
 import { StepQuestionnaire } from "./StepQuestionnaire";
 import { StepAnalysis } from "./StepAnalysis";
 import { StepResults } from "./StepResults";
-import type { CriterionAnswer, ScoreResult, ScoringConfig } from "./types";
+import type {
+  BusinessDetails,
+  CriterionAnswer,
+  ScoreResult,
+  ScoringConfig,
+} from "./types";
 
 async function fetchConfig(): Promise<ScoringConfig> {
   const r = await fetch("/api/config");
@@ -13,7 +19,18 @@ async function fetchConfig(): Promise<ScoringConfig> {
   return (await r.json()) as ScoringConfig;
 }
 
-export function BiosphereAssessment({ businessName }: { businessName: string }) {
+const emptyBusiness = (): BusinessDetails => ({
+  name: "",
+  website: "",
+  linkedin: "",
+  size: "",
+});
+
+export function BiosphereAssessment({
+  initialBusiness,
+}: {
+  initialBusiness?: Partial<BusinessDetails>;
+} = {}) {
   const {
     data: config,
     isLoading,
@@ -25,22 +42,27 @@ export function BiosphereAssessment({ businessName }: { businessName: string }) 
     retry: 1,
   });
 
-  const [step, setStep] = useState<1 | 2 | 3 | 4>(1);
+  const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
+  const [business, setBusiness] = useState<BusinessDetails>(() => ({
+    ...emptyBusiness(),
+    ...initialBusiness,
+  }));
   const [sector, setSector] = useState<string>("");
   const [answers, setAnswers] = useState<Record<string, CriterionAnswer>>({});
   const [result, setResult] = useState<ScoreResult | null>(null);
 
   const restart = useCallback(() => {
     setStep(1);
+    setBusiness({ ...emptyBusiness(), ...initialBusiness });
     setSector("");
     setAnswers({});
     setResult(null);
-  }, []);
+  }, [initialBusiness]);
 
   if (isLoading) {
     return (
       <div className="rounded-2xl border border-dashed border-border p-8 text-center text-sm text-muted-foreground">
-        Loading Biosphere Compass config…
+        Loading Biosphere Beacons config…
       </div>
     );
   }
@@ -69,38 +91,46 @@ export function BiosphereAssessment({ businessName }: { businessName: string }) 
       <StepIndicator step={step} />
 
       {step === 1 && (
-        <StepSector
-          config={config}
-          sector={sector}
-          setSector={setSector}
+        <StepBusiness
+          business={business}
+          setBusiness={setBusiness}
           onNext={() => setStep(2)}
         />
       )}
       {step === 2 && (
-        <StepQuestionnaire
+        <StepSector
           config={config}
-          answers={answers}
-          setAnswers={setAnswers}
+          sector={sector}
+          setSector={setSector}
           onBack={() => setStep(1)}
           onNext={() => setStep(3)}
         />
       )}
       {step === 3 && (
+        <StepQuestionnaire
+          config={config}
+          answers={answers}
+          setAnswers={setAnswers}
+          onBack={() => setStep(2)}
+          onNext={() => setStep(4)}
+        />
+      )}
+      {step === 4 && (
         <StepAnalysis
-          businessName={businessName}
+          businessName={business.name}
           questionnaire={{ sector, answers }}
           onDone={(r) => {
             setResult(r);
-            setStep(4);
+            setStep(5);
           }}
-          onBack={() => setStep(2)}
+          onBack={() => setStep(3)}
         />
       )}
-      {step === 4 && result && (
+      {step === 5 && result && (
         <StepResults
           config={config}
           sector={sector}
-          businessName={businessName}
+          business={business}
           result={result}
           onRestart={restart}
         />

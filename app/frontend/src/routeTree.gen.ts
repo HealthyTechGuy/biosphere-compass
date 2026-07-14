@@ -17,7 +17,7 @@ import { Route as AnalyticsRouteImport } from './routes/analytics'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BusinessSlugRouteImport } from './routes/business.$slug'
-import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedAssessmentRouteImport } from './routes/_authenticated/assessment'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
@@ -59,9 +59,9 @@ const BusinessSlugRoute = BusinessSlugRouteImport.update({
   path: '/business/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
-  id: '/dashboard',
-  path: '/dashboard',
+const AuthenticatedAssessmentRoute = AuthenticatedAssessmentRouteImport.update({
+  id: '/assessment',
+  path: '/assessment',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
@@ -78,7 +78,7 @@ export interface FileRoutesByFullPath {
   '/score': typeof ScoreRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
-  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/assessment': typeof AuthenticatedAssessmentRoute
   '/business/$slug': typeof BusinessSlugRoute
 }
 export interface FileRoutesByTo {
@@ -89,7 +89,7 @@ export interface FileRoutesByTo {
   '/score': typeof ScoreRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/admin': typeof AuthenticatedAdminRoute
-  '/dashboard': typeof AuthenticatedDashboardRoute
+  '/assessment': typeof AuthenticatedAssessmentRoute
   '/business/$slug': typeof BusinessSlugRoute
 }
 export interface FileRoutesById {
@@ -102,7 +102,7 @@ export interface FileRoutesById {
   '/score': typeof ScoreRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
-  '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/assessment': typeof AuthenticatedAssessmentRoute
   '/business/$slug': typeof BusinessSlugRoute
 }
 export interface FileRouteTypes {
@@ -115,7 +115,7 @@ export interface FileRouteTypes {
     | '/score'
     | '/sitemap.xml'
     | '/admin'
-    | '/dashboard'
+    | '/assessment'
     | '/business/$slug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -126,7 +126,7 @@ export interface FileRouteTypes {
     | '/score'
     | '/sitemap.xml'
     | '/admin'
-    | '/dashboard'
+    | '/assessment'
     | '/business/$slug'
   id:
     | '__root__'
@@ -138,7 +138,7 @@ export interface FileRouteTypes {
     | '/score'
     | '/sitemap.xml'
     | '/_authenticated/admin'
-    | '/_authenticated/dashboard'
+    | '/_authenticated/assessment'
     | '/business/$slug'
   fileRoutesById: FileRoutesById
 }
@@ -211,11 +211,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BusinessSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/dashboard': {
-      id: '/_authenticated/dashboard'
-      path: '/dashboard'
-      fullPath: '/dashboard'
-      preLoaderRoute: typeof AuthenticatedDashboardRouteImport
+    '/_authenticated/assessment': {
+      id: '/_authenticated/assessment'
+      path: '/assessment'
+      fullPath: '/assessment'
+      preLoaderRoute: typeof AuthenticatedAssessmentRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/admin': {
@@ -230,12 +230,12 @@ declare module '@tanstack/react-router' {
 
 interface AuthenticatedRouteRouteChildren {
   AuthenticatedAdminRoute: typeof AuthenticatedAdminRoute
-  AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedAssessmentRoute: typeof AuthenticatedAssessmentRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedAdminRoute: AuthenticatedAdminRoute,
-  AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedAssessmentRoute: AuthenticatedAssessmentRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

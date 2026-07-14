@@ -61,7 +61,7 @@ export function GlobalSearch() {
           }}
           placeholder="Search businesses, towns…"
           aria-label="Search the directory"
-          className="w-full bg-transparent text-sm outline-none placeholder:text-muted-foreground"
+          className="w-full bg-transparent text-sm text-foreground outline-none placeholder:text-muted-foreground"
         />
       </div>
       {open && results.length > 0 && (

@@ -2,9 +2,9 @@ import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Fragment } from "react";
 
-const LABELS = ["Sector", "Assessment", "Analysis", "Results"] as const;
+const LABELS = ["Business", "Sector", "Assessment", "Analysis", "Results"] as const;
 
-export function StepIndicator({ step }: { step: 1 | 2 | 3 | 4 }) {
+export function StepIndicator({ step }: { step: 1 | 2 | 3 | 4 | 5 }) {
   return (
     <div className="flex items-center justify-center gap-0 py-2">
       {LABELS.map((label, i) => {
@@ -34,7 +34,7 @@ export function StepIndicator({ step }: { step: 1 | 2 | 3 | 4 }) {
                 {label}
               </span>
             </div>
-            {n < 4 && (
+            {n < LABELS.length && (
               <div
                 className={cn(
                   "mx-1 mb-6 h-0.5 min-w-8 flex-1 transition-colors",

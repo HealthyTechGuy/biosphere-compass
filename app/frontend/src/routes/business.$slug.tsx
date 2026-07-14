@@ -32,7 +32,7 @@ export const Route = createFileRoute("/business/$slug")({
         meta: [{ title: "Business not found — Isle of Man Biosphere" }, { name: "robots", content: "noindex" }],
       };
     }
-    const title = `${loaderData.name} — Isle of Man Biosphere Directory`;
+    const title = `${loaderData.name} — Isle of Man Biosphere Beacons`;
     const desc = loaderData.tagline ?? "A sustainable Isle of Man business with a Biosphere Score.";
     return {
       meta: [
@@ -121,9 +121,9 @@ function BusinessPage() {
           {/* Compass breakdown */}
           {dimensionScores.length > 0 && (
             <section className="mt-12" aria-labelledby="compass-heading">
-              <h2 id="compass-heading" className="font-display text-2xl font-semibold">Biosphere Compass breakdown</h2>
+              <h2 id="compass-heading" className="font-display text-2xl font-semibold">Biosphere Beacons breakdown</h2>
               <p className="mt-1 text-sm text-muted-foreground">
-                Performance across every dimension of the Biosphere Compass.
+                Performance across every dimension of the Biosphere Beacons.
               </p>
               <div className="card-soft mt-6 p-4 sm:p-6">
                 <CompassRadar scores={dimensionScores} />

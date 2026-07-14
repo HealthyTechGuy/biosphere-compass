@@ -52,12 +52,12 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-7xl items-center gap-4 px-4 sm:px-6">
-        <Link to="/" className="flex items-center gap-2" aria-label="Biosphere Directory home">
+        <Link to="/" className="flex items-center gap-2" aria-label="Biosphere Beacons home">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-primary text-primary-foreground">
             <Leaf className="h-5 w-5" />
           </span>
           <span className="hidden font-display text-lg font-semibold leading-tight sm:block">
-            Biosphere Directory
+            Biosphere Beacons
             <span className="block text-[11px] font-normal tracking-wide text-muted-foreground">
               Isle of Man · UNESCO Biosphere
             </span>
@@ -84,10 +84,10 @@ export function SiteHeader() {
           {signedIn ? (
             <>
               <Link
-                to="/dashboard"
+                to="/assessment"
                 className="hidden rounded-xl bg-secondary px-4 py-2 text-sm font-semibold text-secondary-foreground transition-colors hover:bg-accent md:inline-flex"
               >
-                Dashboard
+                Assessment
               </Link>
               <button
                 onClick={handleSignOut}
@@ -133,11 +133,11 @@ export function SiteHeader() {
             {signedIn ? (
               <>
                 <Link
-                  to="/dashboard"
+                  to="/assessment"
                   onClick={() => setOpen(false)}
                   className="rounded-lg px-3 py-3 text-sm font-semibold text-primary hover:bg-accent"
                 >
-                  Dashboard
+                  Assessment
                 </Link>
                 <button
                   onClick={() => {

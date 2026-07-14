@@ -84,7 +84,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "Discover Isle of Man businesses committed to sustainability, scored with the Biosphere Compass.",
+          "Discover Isle of Man businesses committed to sustainability, scored with the Biosphere Beacons.",
       },
       { name: "author", content: "Isle of Man Biosphere" },
       { property: "og:title", content: "Isle of Man Biosphere Business Directory" },

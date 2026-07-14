@@ -1,4 +1,4 @@
-// Modular Biosphere Compass scoring engine.
+// Modular Biosphere Beacons scoring engine.
 // Dimensions, questions and weights all live in the database, so the
 // framework can evolve without changing this code.
 

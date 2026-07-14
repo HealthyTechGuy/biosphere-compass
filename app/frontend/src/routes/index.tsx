@@ -106,7 +106,7 @@ function HomePage() {
             <div>
               <h2 className="font-display text-3xl font-semibold">Featured businesses</h2>
               <p className="mt-1 text-muted-foreground">
-                Standout performers on the Biosphere Compass.
+                Standout performers on the Biosphere Beacons.
               </p>
             </div>
             <Link
@@ -212,7 +212,7 @@ function HomePage() {
             </h2>
             <p className="mt-4 text-muted-foreground">
               Every business is assessed with the{" "}
-              <strong className="text-foreground">Biosphere Compass</strong> — a framework inspired
+              <strong className="text-foreground">Biosphere Beacons</strong> — a framework inspired
               by the Isle of Man's Climate Impact Assessment. It measures performance across
               dimensions like climate impact, energy, waste, nature, community and sustainable
               tourism, then combines them into one weighted score out of 100.
@@ -250,7 +250,7 @@ function HomePage() {
             Run a Manx business? Show the Island your progress.
           </h2>
           <p className="mt-4 text-primary-foreground/85">
-            Complete the Biosphere Compass assessment, upload your evidence and earn your Biosphere
+            Complete the Biosphere Beacons assessment, upload your evidence and earn your Biosphere
             Score. Verification by the Biosphere team builds trust with customers, visitors and
             procurement teams.
           </p>

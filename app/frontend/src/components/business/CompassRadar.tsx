@@ -17,7 +17,7 @@ export function CompassRadar({ scores }: { scores: DimensionScore[] }) {
   if (!scores.length) return null;
   const data = scores.map((s) => ({ dimension: s.name, score: s.score }));
   return (
-    <div className="h-80 w-full sm:h-96" role="img" aria-label="Biosphere Compass radar chart">
+    <div className="h-80 w-full sm:h-96" role="img" aria-label="Biosphere Beacons radar chart">
       <ResponsiveContainer width="100%" height="100%">
         <RadarChart data={data} outerRadius="70%">
           <PolarGrid stroke="var(--border)" />

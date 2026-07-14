@@ -18,9 +18,9 @@ export const Route = createFileRoute("/analytics")({
   },
   head: () => ({
     meta: [
-      { title: "Island Analytics — Isle of Man Biosphere Directory" },
+      { title: "Island Analytics — Isle of Man Biosphere Beacons" },
       { name: "description", content: "Live sustainability analytics: participating businesses, average Biosphere Score, businesses by parish and sector, and impact estimates." },
-      { property: "og:title", content: "Island Analytics — Isle of Man Biosphere Directory" },
+      { property: "og:title", content: "Island Analytics — Isle of Man Biosphere Beacons" },
       { property: "og:description", content: "Live sustainability analytics for the Isle of Man business community." },
     ],
   }),

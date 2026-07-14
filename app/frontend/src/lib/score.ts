@@ -1,5 +1,5 @@
 // Biosphere Score presentation utilities.
-// Thresholds/bands per the Biosphere Directory spec.
+// Thresholds/bands per the Biosphere Beacons spec.
 
 export interface ScoreBand {
   label: "Outstanding" | "Excellent" | "Good" | "Developing" | "Beginning";

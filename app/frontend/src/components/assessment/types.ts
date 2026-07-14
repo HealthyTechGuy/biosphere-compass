@@ -61,6 +61,15 @@ export interface CriterionResult {
   band: BandConfig;
 }
 
+export type BusinessSize = "" | "small" | "medium" | "large";
+
+export interface BusinessDetails {
+  name: string;
+  website: string;
+  linkedin: string;
+  size: BusinessSize;
+}
+
 export type ScoreResult =
   | { status: "incomplete"; missing: string[]; errors: string[] }
   | {

@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { ScoringConfig } from "./types";
@@ -7,11 +7,13 @@ export function StepSector({
   config,
   sector,
   setSector,
+  onBack,
   onNext,
 }: {
   config: ScoringConfig;
   sector: string;
   setSector: (s: string) => void;
+  onBack: () => void;
   onNext: () => void;
 }) {
   const entries = Object.entries(config.sectors);
@@ -48,7 +50,10 @@ export function StepSector({
         ))}
       </div>
 
-      <div className="flex justify-end">
+      <div className="flex items-center justify-between">
+        <Button type="button" variant="ghost" onClick={onBack} className="gap-2">
+          <ArrowLeft className="h-4 w-4" aria-hidden /> Back
+        </Button>
         <Button
           type="button"
           size="lg"

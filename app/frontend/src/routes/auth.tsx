@@ -8,8 +8,8 @@ import { isDemoMode, setDemoMode } from "@/lib/demo-mode";
 export const Route = createFileRoute("/auth")({
   head: () => ({
     meta: [
-      { title: "Sign in — Isle of Man Biosphere Directory" },
-      { name: "description", content: "Sign in or create a free account to complete your Biosphere Compass assessment." },
+      { title: "Sign in — Isle of Man Biosphere Beacons" },
+      { name: "description", content: "Sign in or create a free account to complete your Biosphere Beacons assessment." },
     ],
   }),
   component: AuthPage,
@@ -31,11 +31,11 @@ function AuthPage() {
 
   useEffect(() => {
     if (isDemoMode()) {
-      navigate({ to: "/dashboard", replace: true });
+      navigate({ to: "/assessment", replace: true });
       return;
     }
     supabase.auth.getSession().then(({ data }) => {
-      if (data.session) navigate({ to: "/dashboard", replace: true });
+      if (data.session) navigate({ to: "/assessment", replace: true });
     });
   }, [navigate]);
 
@@ -47,7 +47,7 @@ function AuthPage() {
     try {
       if (email === DEMO_EMAIL && password === DEMO_PASSWORD) {
         setDemoMode(true);
-        navigate({ to: "/dashboard" });
+        navigate({ to: "/assessment" });
         return;
       }
       if (mode === "signup") {
@@ -64,7 +64,7 @@ function AuthPage() {
       } else {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
-        navigate({ to: "/dashboard" });
+        navigate({ to: "/assessment" });
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
@@ -83,7 +83,7 @@ function AuthPage() {
       return;
     }
     if (result.redirected) return;
-    navigate({ to: "/dashboard" });
+    navigate({ to: "/assessment" });
   }
 
   return (
@@ -94,12 +94,12 @@ function AuthPage() {
             <Leaf className="h-6 w-6" aria-hidden />
           </span>
           <h1 className="mt-4 font-display text-2xl font-semibold">
-            {mode === "signin" ? "Welcome back" : "Join the Biosphere Directory"}
+            {mode === "signin" ? "Welcome back" : "Join the Biosphere Beacons"}
           </h1>
           <p className="mt-1 text-sm text-muted-foreground">
             {mode === "signin"
               ? "Sign in to manage your business and assessment."
-              : "Create a free account to complete your Biosphere Compass assessment."}
+              : "Create a free account to complete your Biosphere Beacons assessment."}
           </p>
         </div>
 

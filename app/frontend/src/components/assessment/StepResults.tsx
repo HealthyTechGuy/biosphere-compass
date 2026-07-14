@@ -1,9 +1,21 @@
-import { useEffect, useState } from "react";
-import { ArrowLeft, Target, Sparkles } from "lucide-react";
+import { useEffect, useState, type CSSProperties } from "react";
+import {
+  ArrowLeft,
+  Check,
+  Facebook,
+  Globe,
+  Link as LinkIcon,
+  Linkedin,
+  Share2,
+  Sparkles,
+  Target,
+  Twitter,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScoreRing } from "@/components/score/ScoreRing";
+import { scoreBand } from "@/lib/score";
 import { cn } from "@/lib/utils";
-import type { ScoreResult, ScoringConfig } from "./types";
+import type { BusinessDetails, ScoreResult, ScoringConfig } from "./types";
 
 const BAND_COLOUR: Record<string, string> = {
   green: "#16a34a",
@@ -16,13 +28,13 @@ const BAND_COLOUR: Record<string, string> = {
 export function StepResults({
   config,
   sector,
-  businessName,
+  business,
   result,
   onRestart,
 }: {
   config: ScoringConfig;
   sector: string;
-  businessName: string;
+  business: BusinessDetails;
   result: ScoreResult;
   onRestart: () => void;
 }) {
@@ -67,7 +79,7 @@ export function StepResults({
     <CompleteResults
       config={config}
       sector={sector}
-      businessName={businessName}
+      business={business}
       result={result}
       onRestart={onRestart}
     />
@@ -77,13 +89,13 @@ export function StepResults({
 function CompleteResults({
   config,
   sector,
-  businessName,
+  business,
   result,
   onRestart,
 }: {
   config: ScoringConfig;
   sector: string;
-  businessName: string;
+  business: BusinessDetails;
   result: Extract<ScoreResult, { status: "complete" }>;
   onRestart: () => void;
 }) {
@@ -110,15 +122,45 @@ function CompleteResults({
         <ScoreRing score={result.headline} size={140} />
         <div className="min-w-0 flex-1">
           <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-            {businessName || "Compass report"}
+            {business.name || "Compass report"}
           </p>
           <h3 className="mt-1 font-display text-2xl font-semibold">
-            Biosphere Compass score
+            Biosphere Beacons score
           </h3>
           <p className="mt-1 text-sm text-muted-foreground">
-            {sectorName} · Config v{result.configVersion}
+            {sectorName}
+            {business.size ? ` · ${sizeLabel(business.size)}` : ""} · Config v
+            {result.configVersion}
           </p>
+          {(business.website || business.linkedin) && (
+            <div className="mt-2 flex flex-wrap items-center gap-3 text-xs">
+              {business.website && (
+                <a
+                  href={ensureUrl(business.website)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-primary hover:underline"
+                >
+                  <Globe className="h-3.5 w-3.5" aria-hidden />
+                  {trimUrl(business.website)}
+                </a>
+              )}
+              {business.linkedin && (
+                <a
+                  href={ensureUrl(business.linkedin)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="inline-flex items-center gap-1 text-primary hover:underline"
+                >
+                  <Linkedin className="h-3.5 w-3.5" aria-hidden />
+                  LinkedIn
+                </a>
+              )}
+            </div>
+          )}
         </div>
+
+        <ShareBar business={business} result={result} sectorName={sectorName} />
       </div>
 
       <section aria-labelledby="pillar-heading">
@@ -230,4 +272,126 @@ function CompleteResults({
       </div>
     </div>
   );
+}
+
+function ShareBar({
+  business,
+  result,
+  sectorName,
+}: {
+  business: BusinessDetails;
+  result: Extract<ScoreResult, { status: "complete" }>;
+  sectorName: string;
+}) {
+  const [copied, setCopied] = useState(false);
+
+  const shareUrl = typeof window !== "undefined" ? window.location.origin : "";
+  const band = scoreBand(result.headline).label;
+  const who = business.name?.trim() || "We";
+  const shareText = `${who} scored ${Math.round(result.headline)}/100 (${band}) on the Isle of Man Biosphere Beacons — a sector-weighted sustainability assessment for ${sectorName}.`;
+
+  const openShare = (url: string) => {
+    if (typeof window === "undefined") return;
+    window.open(url, "_blank", "noopener,noreferrer,width=600,height=640");
+  };
+
+  const encoded = {
+    url: encodeURIComponent(shareUrl),
+    text: encodeURIComponent(shareText),
+  };
+
+  const targets = [
+    {
+      key: "x",
+      label: "Share on X",
+      icon: Twitter,
+      colour: "#1DA1F2",
+      onClick: () =>
+        openShare(`https://twitter.com/intent/tweet?text=${encoded.text}&url=${encoded.url}`),
+    },
+    {
+      key: "linkedin",
+      label: "Share on LinkedIn",
+      icon: Linkedin,
+      colour: "#0A66C2",
+      onClick: () =>
+        openShare(`https://www.linkedin.com/sharing/share-offsite/?url=${encoded.url}`),
+    },
+    {
+      key: "facebook",
+      label: "Share on Facebook",
+      icon: Facebook,
+      colour: "#1877F2",
+      onClick: () =>
+        openShare(
+          `https://www.facebook.com/sharer/sharer.php?u=${encoded.url}&quote=${encoded.text}`,
+        ),
+    },
+  ];
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(`${shareText} ${shareUrl}`.trim());
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* clipboard unavailable — no-op */
+    }
+  };
+
+  return (
+    <div className="flex shrink-0 flex-col items-end gap-2 self-end">
+      <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-muted-foreground">
+        <Share2 className="h-3.5 w-3.5" aria-hidden /> Share
+      </p>
+      <div className="flex items-center gap-2">
+        {targets.map((t) => (
+          <button
+            key={t.key}
+            type="button"
+            onClick={t.onClick}
+            aria-label={t.label}
+            title={t.label}
+            style={{ "--brand": t.colour } as CSSProperties}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-card transition-all hover:-translate-y-[1px] hover:border-[var(--brand)] hover:bg-[color-mix(in_srgb,var(--brand)_12%,transparent)] hover:shadow-sm"
+          >
+            <t.icon className="h-4 w-4" style={{ color: t.colour }} aria-hidden />
+          </button>
+        ))}
+        <button
+          type="button"
+          onClick={handleCopy}
+          aria-label={copied ? "Link copied" : "Copy link"}
+          title={copied ? "Link copied" : "Copy link"}
+          className={cn(
+            "inline-flex h-10 w-10 items-center justify-center rounded-full border transition-all hover:-translate-y-[1px] hover:shadow-sm",
+            copied
+              ? "border-primary bg-primary/10 text-primary"
+              : "border-border bg-card text-muted-foreground hover:border-primary hover:bg-primary/5 hover:text-primary",
+          )}
+        >
+          {copied ? (
+            <Check className="h-4 w-4" aria-hidden />
+          ) : (
+            <LinkIcon className="h-4 w-4" aria-hidden />
+          )}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function sizeLabel(size: BusinessDetails["size"]): string {
+  if (size === "small") return "Small (1–49)";
+  if (size === "medium") return "Medium (50–249)";
+  if (size === "large") return "Large (250+)";
+  return "";
+}
+
+function ensureUrl(input: string): string {
+  return /^https?:\/\//i.test(input) ? input : `https://${input}`;
+}
+
+function trimUrl(input: string): string {
+  return input.replace(/^https?:\/\/(www\.)?/i, "").replace(/\/$/, "");
 }

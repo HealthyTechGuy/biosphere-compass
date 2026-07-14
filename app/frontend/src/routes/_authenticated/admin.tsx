@@ -6,7 +6,7 @@ import { getAdminData, reviewAssessment, updateDimension, updateBusinessFlags } 
 import { ScoreChip } from "@/components/score/ScoreRing";
 
 export const Route = createFileRoute("/_authenticated/admin")({
-  head: () => ({ meta: [{ title: "Admin — Biosphere Directory" }] }),
+  head: () => ({ meta: [{ title: "Admin — Biosphere Beacons" }] }),
   component: AdminPage,
 });
 
